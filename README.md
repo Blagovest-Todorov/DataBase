@@ -83,3 +83,5 @@ TRUNCATE TABLE Employees
 --truncate we delete the content of the table not the thable itself, We shorten tghee content of the table, the delete some of the content
 
 TRUNCATE Table Towns
+
+Relations between the tables into the DB
