@@ -85,3 +85,4 @@ TRUNCATE TABLE Employees
 TRUNCATE Table Towns
 
 Relations between the tables into the DB
+We can communicate with DB server using  SQL -> Structured query language
