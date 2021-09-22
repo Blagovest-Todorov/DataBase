@@ -86,3 +86,49 @@ TRUNCATE Table Towns
 
 Relations between the tables into the DB
 We can communicate with DB server using  SQL -> Structured query language
+
+--CREATE DATABASE Practice
+CREATE TABLE Users 
+(
+Id BIGINT,
+Username VARCHAR(30),
+Password VARCHAR(26),
+ProfilePicture VARBINARY(MAX),
+LastLoginTime DATE,
+IsDeleted BIT
+)
+
+--ALTER TABLE Users
+--ALTER COLUMN Id INT NOT NULL
+--ADD CONSTRAINT PK_Users PRIMARY KEY (Id)
+--ADD PRIMARY KEY (Id)
+
+ALTER TABLE Users
+ADD CONSTRAINT CH_PictureSize CHECK (DATALENGTH(ProfilePicture) < 900 * 1024)
+
+DECLARE @C VARCHAR(MAX) = '|'
+DECLARE @ProfilePicture VARBINARY(MAX) = CONVERT(VARBINARY(MAX),REPLICATE(@C,(921500)))
+
+INSERT INTO Users (Id , Username, Password, ProfilePicture)
+VALUES
+(2, 'Gosho', 'Pass123', @ProfilePicture)
+
+ALTER TABLE Users
+--ALTER COLUMN Username VARCHAR(30) NOT NULL
+ADD CONSTRAINT UQ_Username UNIQUE (Username)
+
+ALTER TABLE Users
+ADD CONSTRAINT CH_USERNAME CHECK (Username = 'm' OR Username = 'f')
+
+ALTER TABLE Users
+DROP CONSTRAINT CH_USERNAME
+
+
+INSERT INTO Users (Id, Username, Password)
+VALUES(3,'m','123'
+ )
+
+Till task 10 /
+ALTER TABLE Users 
+ADD CONSTRAINT CH_PasswordLength  CHECK(LEN (Password) >= 5)
+
